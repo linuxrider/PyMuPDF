@@ -3,10 +3,8 @@ name: Build Pyodide wheel
 # Builds pyodide wheels.
 
 on:
-  workflow_dispatch:
-  
-  schedule:
-    - cron: '13 5 * * *'
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
 
 jobs:
 
@@ -25,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.12
       
       - name: pyodide
         run:
