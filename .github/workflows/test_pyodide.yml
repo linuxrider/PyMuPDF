@@ -17,7 +17,6 @@ jobs:
       matrix:
         args: [
             '',
-            '-m "git:--branch master https://github.com/ArtifexSoftware/mupdf"', 
             '-m "git:--branch 1.26.x https://github.com/ArtifexSoftware/mupdf"',
             ]
       fail-fast: false
@@ -26,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: 3.13
       
       - name: pyodide
         run:
@@ -34,6 +33,6 @@ jobs:
       
       # We do not use upload-artifact@v4 because it fails due to us creating
       # identically-named wheels.
-      #- uses: actions/upload-artifact@v4
-      #  with:
-      #    path: ./wheelhouse/*.whl
+      - uses: actions/upload-artifact@v4
+        with:
+         path: ./wheelhouse/*.whl
