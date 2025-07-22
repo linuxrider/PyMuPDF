@@ -834,7 +834,7 @@ def pyodide_setup(
     '''
     
     pv = platform.python_version_tuple()[:2]
-    assert pv == ('3', '12'), f'Pyodide builds need to be run with Python-3.12 but current Python is {platform.python_version()}.'
+    assert pv == ('3', '13'), f'Pyodide builds need to be run with Python-3.12 but current Python is {platform.python_version()}.'
     command = f'cd {directory}'
     
     # Clone/update emsdk. We always use the latest emsdk with `git pull`.
@@ -852,6 +852,7 @@ def pyodide_setup(
         command += f' && git clone https://github.com/emscripten-core/emsdk.git {dir_emsdk}'
     command += f' && echo "### Updating checkout {dir_emsdk}"'
     command += f' && (cd {dir_emsdk} && git pull -r)'
+    command += f' && (cd {dir_emsdk} && git checkout tags/4.0.9)'
     command += f' && echo "### Checkout {dir_emsdk} is:"'
     command += f' && (cd {dir_emsdk} && git show -s --oneline)'
     

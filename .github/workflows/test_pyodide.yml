@@ -3,10 +3,8 @@ name: Build Pyodide wheel
 # Builds pyodide wheels.
 
 on:
-  workflow_dispatch:
-  
-  schedule:
-    - cron: '13 5 * * *'
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
 
 jobs:
 
@@ -17,7 +15,6 @@ jobs:
       matrix:
         args: [
             '',
-            '-m "git:--branch 1.26.x https://github.com/ArtifexSoftware/mupdf"',
             ]
       fail-fast: false
     
